@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Customer</title>
+</head>
+<body>
+    <h2 class="mb-3 text-secondary">Create An Account</h2>
+    <div class="container-fluid">
+        <div *ngIf = successEnabled class="alert alert-success alert-dismissible" role="alert">
+            Customer Saved Successfully!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div *ngIf = errorEnabled lass="alert alert-warning alert-dismissible" role="alert">
+            Error! Customer Was Not Saved.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="userFormGroup" (ngSubmit)="createUser()" name="userForm">
+            <div class="row justify-content-center">
+                <div class="col-sm-3">
+                    <label for="firstName" class="form-label text-secondary">First Name</label>
+                    <input id="firstName" type="text" class="form-control" placeholder="John" ng-required="true" formControlName="firstName">
+                </div>
+                <div class="col-sm-3">
+                    <label for="lastName" class="form-label text-secondary">Last Name</label>
+                    <input id="lastName" type="text" class="form-control" placeholder="Smith" ng-required="true" formControlName="lastName">
+                </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-sm-3">
+                    <label for="email" class="form-label text-secondary">Email Address</label>
+                    <input id="email" class="form-control" type="text" placeholder="john@example.com" ng-required="true" formControlName="emailAddress">
+                </div>
+                <div class="col-sm-3">
+                    <label for="password" class="form-label text-secondary">Password</label>
+                    <input id="password" class="form-control" type="password" ng-required="true" formControlName="password">
+                </div>
+            </div>
+            <br>
+            <div class="row  justify-content-center">
+                <div class="col-sm-3">
+                    <label for="street" class="form-label text-secondary">Street Address</label>
+                    <input id="street" type="text" class="form-control" placeholder="222 22nd St." ng-required="true" formControlName="street">
+                </div>
+                <div class="col-sm-3">
+                    <label for="city" class="form-label text-secondary">City</label>
+                    <input id="city" type="text" class="form-control" placeholder="" ng-required="true" formControlName="city">
+                </div>
+            </div>
+            <br>    
+            <div class="row justify-content-center">
+                <div class=" col-sm-3">
+                    <label for="stateNames" class="form-label text-secondary">State</label>
+                    <input id="stateNames" type="text" class="form-control" placeholder="Illinois" ng-required="true" formControlName="state">
+                    <br>
+                </div>
+                <div class="col-sm-3">
+                    <label for="zipCode" class="form-label text-secondary">Zip Code</label>
+                    <input id="zipCode" type="text" class="form-control" placeholder="" ng-required="true" formControlName="zipCode">
+                </div>
+            
+            </div>
+            <br>
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </div>            
+        </form>
+    </div>
+</body>
+</html>
