@@ -1,0 +1,35 @@
+<app-header-admin></app-header-admin>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <br>
+    <h2 class="mb-3 text-secondary">All Restaurants</h2>
+    <br>
+    <div class="container-fluid col-sm-10">
+        <table class="table table-secondary">
+            <thead>
+                <tr>
+                    <th scope="col">Restaurant Id</th>
+                    <th scope="col">Restaurant Name</th>
+                    <th scope="col">Dishes</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+                <tr *ngFor="let restaurant of restaurantArray">
+                    <td>{{restaurant.restaurantId}}</td>
+                    <td>{{restaurant.restaurantName}}</td>
+                    <td><button (click)="showMenu(restaurant.restaurantId)">Show Menu</button> &nbsp; </td>
+                    <td>
+                        <button (click)="DeleteRestaurant(restaurant.restaurantId)">Delete</button> &nbsp; 
+                        <button (click)="updateRestaurant(restaurant.restaurantId)">Update </button> &nbsp;
+                    </td>
+                </tr>
+        </table>
+    </div>
+    <br>
+</body>
+</html>

@@ -14,6 +14,7 @@ import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { ManageRestaurantComponent } from './manage-restaurant/manage-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     HeaderAdminComponent,
     RestaurantComponent,
     ManageUsersComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    ManageRestaurantComponent
   ],
   imports: [
     BrowserModule,

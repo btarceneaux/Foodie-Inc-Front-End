@@ -7,6 +7,7 @@ import { AdminComponent } from './admin/admin.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { ManageRestaurantComponent } from './manage-restaurant/manage-restaurant.component';
 
 const routes: Routes = 
 [
@@ -15,6 +16,7 @@ const routes: Routes =
   {path:"home", component:HomeComponent},
   {path:"admin", component:AdminComponent},
   {path:"addRestaurant", component:RestaurantComponent},
+  {path:"manageRestaurants",component:ManageRestaurantComponent},
   {path:"manageUsers", component:ManageUsersComponent},
   {path:"updateUserDetails", component:UpdateUserComponent}
 ];

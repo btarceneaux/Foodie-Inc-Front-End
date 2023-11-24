@@ -1,1 +1,26 @@
-<p>restaurant works!</p>
+<app-header-admin></app-header-admin>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <br>
+    <h2 class="mb-3 text-secondary">Add Restaurant</h2>
+    <br>
+
+    <form [formGroup]="restaurantFormGroup" (ngSubmit)="createRestaurant()" name="restaurantForm">
+        <div class="row justify-content-center">
+            <div class="col-sm-3">
+                <label for="restaurantName" class="form-label text-secondary">Restaurant Name</label>
+                <input id="restaurantName" type="text" class="form-control" placeholder="My Fancy Restaurant Name" ng-required="true" formControlName="restaurantName">
+            </div>
+        </div>
+        <br>
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </div>            
+    </form>
+</body>
+</html>
