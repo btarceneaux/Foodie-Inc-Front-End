@@ -9,6 +9,7 @@ import { Address } from '../user/address';
 })
 export class UserService 
 {
+  user:any;
   
   constructor(public http:HttpClient) { }
 
@@ -29,10 +30,35 @@ export class UserService
 
   createUser(myUser:User) 
   {
-    console.log("Inside of the user service: ")
-    console.log(myUser);
     let api = this.baseurl + "/user";
     return this.http.post<Response>(api, myUser, {responseType:'json'});    
   }
 
+  getAllUsers():Observable<User[]>
+  {
+    let api = this.baseurl + "/user";
+    return this.http.get<User[]>(api, {responseType:'json'});
+  }
+
+  deleteUser(userId:String):Observable<Response>
+  {
+    let api = this.baseurl + "/user/" + userId;
+    return this.http.delete<Response>(api);
+  }
+
+  updateUser(myUser:User):Observable<Response>
+  {
+    let api = this.baseurl + "/user";
+    return this.http.put<Response>(api, myUser);
+  }
+
+  shareUser(sharedUser:User)
+  {
+    this.user = sharedUser;
+  }
+
+  getSharedUser()
+  {
+    return this.user;
+  }
 }

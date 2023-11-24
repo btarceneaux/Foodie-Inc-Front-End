@@ -12,6 +12,8 @@ import { HeaderComponent } from './header/header.component';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
     HeaderComponent,
     AdminComponent,
     HeaderAdminComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    ManageUsersComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

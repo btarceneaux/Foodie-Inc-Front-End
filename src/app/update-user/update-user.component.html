@@ -1,0 +1,84 @@
+<app-header-admin></app-header-admin>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Customer</title>
+</head>
+<body>
+    <h2 class="mb-3 text-secondary">Update An Account</h2>
+    <div class="container-fluid">
+        <div *ngIf = successEnabled class="alert alert-success alert-dismissible" role="alert">
+            Customer Saved Successfully!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div *ngIf = errorEnabled lass="alert alert-warning alert-dismissible" role="alert">
+            Error! Customer Was Not Saved.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="userFormGroup" (ngSubmit)="updateUser()" name="userForm">
+            <div class="row justify-content-center">
+                <div class="col-sm-3">
+                    <label for="userId" class="form-label text-secondary">User Id</label>
+                    <input id="userId" readonly value={{user.userId}} type="text" class="form-control" ng-required="true" formControlName="userId" ngModel={{user.userId}} ng-readonly="all">
+                </div>
+                <div class="col-sm-3">
+                    <label for="firstName" class="form-label text-secondary">First Name</label>
+                    <input id="firstName" type="text" class="form-control" ng-required="true" formControlName="firstName" ngModel={{user.firstName}}>
+                </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-sm-3">
+                    <label for="lastName" class="form-label text-secondary">Last Name</label>
+                    <input id="lastName" type="text" class="form-control" ng-required="true" formControlName="lastName" ngModel={{user.lastName}}>
+                </div>
+                <div class="col-sm-3">
+                    <label for="email" class="form-label text-secondary">Email Address</label>
+                    <input id="email" class="form-control" type="text" ng-required="true" formControlName="emailAddress" ngModel={{user.emailAddress}}>
+                </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-sm-3">
+                    <label for="password" class="form-label text-secondary">Password</label>
+                    <input id="password" readonly value={{user.password}} class="form-control" type="password" ng-required="true" formControlName="password" ngModel={{user.password}}>
+                </div>
+                <div class="col-sm-3">
+                    <label for="addressId" class="form-label text-secondary">Address Id</label>
+                    <input id="addressId" readonly value={{user.myAddress.addressId}} class="form-control" type="text" ng-required="true" formControlName="addressId" ngModel={{user.myAddress.addressId}}>
+                </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-sm-3">
+                    <label for="street" class="form-label text-secondary">Street Address</label>
+                    <input id="street" type="text" class="form-control" ng-required="true" formControlName="street" ngModel={{user.myAddress.streetAddress}}>
+                </div>
+                <div class="col-sm-3">
+                    <label for="city" class="form-label text-secondary">City</label>
+                    <input id="city" type="text" class="form-control" ng-required="true" formControlName="city" ngModel={{user.myAddress.city}}>
+                </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+                <div class=" col-sm-3">
+                    <label for="stateNames" class="form-label text-secondary">State</label>
+                    <input id="stateNames" type="text" class="form-control" ng-required="true" formControlName="state" ngModel={{user.myAddress.state}}>
+                    <br>
+                </div>
+                <div class="col-sm-3">
+                    <label for="zipCode" class="form-label text-secondary">Zip Code</label>
+                    <input id="zipCode" type="text" class="form-control"  ng-required="true" formControlName="zipCode" ngModel={{user.myAddress.zipCode}}>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </div>         
+      </form>
+    </div>
+</body>
+</html>

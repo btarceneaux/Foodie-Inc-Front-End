@@ -1,0 +1,38 @@
+<app-header-admin></app-header-admin>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <br>
+    <h2 class="mb-3 text-secondary">All Users</h2>
+    <br>
+    <div class="container-fluid col-sm-10">
+        <table class="table table-secondary">
+            <thead>
+                <tr>
+                    <th scope="col">User Id</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+                <tr *ngFor="let user of userArray">
+                    <td>{{user.userId}}</td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.emailAddress}}</td>
+                    <td>
+                        <button (click)="deleteUser(user.userId)">Delete</button> &nbsp; 
+                        <button (click)="updateUser(user)">Update </button> &nbsp;
+                    </td>
+                </tr>
+        </table>
+    </div>
+    <br>
+</body>
+</html>
