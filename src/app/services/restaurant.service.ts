@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Restaurant } from '../restaurant/restaurant';
+import { Restaurant } from '../manage-restaurant/restaurant';
+import { Dish } from '../manage-restaurant/dish';
 
 @Injectable({
   providedIn: 'root'
@@ -47,4 +48,12 @@ export class RestaurantService
   {
     return this.restaurant;
   }
+
+  createDish(dishFormData: FormData)
+  {
+    let api = this.baseurl + "/restaurant/addDish";
+    
+    return this.http.post<Response>(api, dishFormData, {responseType:'json'});    
+  }
+
 }

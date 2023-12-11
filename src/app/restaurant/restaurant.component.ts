@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Dish } from './dish';
-import { Restaurant } from './restaurant';
+import { Dish } from '../manage-restaurant/dish';
+import { Restaurant } from '../manage-restaurant/restaurant'
 import { RestaurantService } from '../services/restaurant.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
