@@ -6,13 +6,14 @@ export class Dish
     dishName:string;
     dishCategory:string;
     cost:number;
-    dishImages:FileHandle[] = [];
+    imageURL:string;
 
-    constructor(dishName:string, dishCategory:string, cost:number)
+    constructor(dishName:string, dishCategory:string, cost:number, url:string)
     {
         this.dishName = dishName;
         this.dishCategory = dishCategory;
         this.cost = cost;
+        this.imageURL = url;
     }
 
     setDishId(dishId:number)

@@ -20,7 +20,8 @@ export class ManageRestaurantComponent implements OnInit
   userFormGroup: any;
   selectedRestaurantId:number = 0;
   response:Response = new Response();
-  myDish:Dish = new Dish('', '', 0);
+  myDish:Dish = new Dish('', '', 0, '');
+  fileHandle:any;
   
 
 
@@ -68,8 +69,7 @@ export class ManageRestaurantComponent implements OnInit
         url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file))
       }
 
-      //Add the pictures in the object.
-      this.myDish.dishImages.push(fileHandle);
+      this.fileHandle = fileHandle;
     }
     
     
@@ -101,15 +101,12 @@ export class ManageRestaurantComponent implements OnInit
       new Blob([JSON.stringify(dish)], {type:'application/json'})
     );
 
-    for(var i = 0; i < dish.dishImages.length; i++)
-    {
-      formData.append
+    formData.append
     (
-      'imageFile',
-      dish.dishImages[i].file,
-      dish.dishImages[i].file.name
-    );
-    } 
+      'file',
+      this.fileHandle?.file
+    )
+
 
     return formData;
   }
