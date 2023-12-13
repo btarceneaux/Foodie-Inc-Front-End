@@ -33,10 +33,10 @@ export class RestaurantService
     return this.http.delete<Response>(api);
   }
 
-  updateRestaurant(myRestaurant:Restaurant):Observable<Response>
+  deleteDish(restaurantId:number, dishId:number):Observable<Response>
   {
-    let api = this.baseurl + "/restaurant";
-    return this.http.put<Response>(api, myRestaurant);
+    let api = this.baseurl + "/restaurant/deleteDish/" + restaurantId + "/" + dishId;
+    return this.http.delete<Response>(api);
   }
 
   shareRestaurant(sharedRestaurant:Restaurant)

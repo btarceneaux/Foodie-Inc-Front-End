@@ -13,7 +13,7 @@
         <table class="table table-secondary">
             <thead>
                 <tr>
-                    <th scope="col">Restaurant Id</th>
+                    <th scope="col">Restaurant ID</th>
                     <th scope="col">Restaurant Name</th>
                     <th scope="col">Manage Restaurant Menu</th>
                     <th scope="col">Restaurant Actions</th>
@@ -25,7 +25,7 @@
                     <td>
                       <!-- (coptionck)="[openModal(), setRestaurantId(restaurant.restaurantId)] -->
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addDishModal" (click)="setRestaurantId(restaurant.restaurantId)" (coptionck)="openModal()">Add Dish</button> &nbsp; 
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addDishModal" (coptionck)="openModal()">Manage Menu</button> &nbsp; 
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#manageMenuModal" (click)="setRestaurantId(restaurant.restaurantId); getAllDishesFromRestaurant()" (coptionck)="openMenuModal()">Manage Menu</button> &nbsp; 
                     </td>
                     <td>
                         <button (coptionck)="DeleteRestaurant(restaurant.restaurantId)">Delete</button> &nbsp; 
@@ -35,9 +35,47 @@
         </table>
     </div>
     <br>
-
-    <!-- Modal -->
-<div class="modal fade" id="addDishModal" tabindex="-1" aria-labelledby="addDishModalLabel" aria-hidden="true">
+  <!-- Menu Modal -->
+  <div class="modal fade" id="manageMenuModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <h4 class="modal-title">Manage Menu</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-secondary">
+            <thead>
+              <tr>
+                <th scope="col">Dish ID</th>
+                <th scope="col">Dish Name</th>
+                <th scope="col">Dish Category</th>
+                <th scope="col">Dish Price</th>
+                <th scope="col">Dish Picture</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let dish of mySelectedRestaurant.dishes">
+              <td scope="col">{{dish.dishId}}</td>
+              <td scope="col">{{dish.dishName}}</td>
+              <td scope="col">{{dish.dishCategory}}</td>
+              <td scope="col">${{dish.cost}}</td>
+              <td scope="col"><img src={{dish.imageURL}} width="75px" height="75px"></td>
+              <td scope="col">
+                <button (click)="deleteDish(dish.dishId)">Delete</button> &nbsp; 
+                <button>Update</button> &nbsp;
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (coptionck)="closeMenuModal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Dish Modal -->
+  <div class="modal fade" id="addDishModal" tabindex="-1" aria-labelledby="addDishModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

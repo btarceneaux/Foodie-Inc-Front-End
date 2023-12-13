@@ -14,15 +14,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ManageRestaurantComponent implements OnInit
 {
-
-  dishArray:Dish[] = [];
   restaurantArray:Restaurant[] = [];
   userFormGroup: any;
   selectedRestaurantId:number = 0;
   response:Response = new Response();
   myDish:Dish = new Dish('', '', 0, '');
   fileHandle:any;
-  
+  mySelectedRestaurant:Restaurant = new Restaurant("");
 
 
   constructor(private restaurantService: RestaurantService, private router:Router, private sanitizer: DomSanitizer)
@@ -57,6 +55,17 @@ export class ManageRestaurantComponent implements OnInit
     
   }
 
+  openMenuModal() 
+  {
+    const modelDiv = document.getElementById('manageMenuModal');
+
+    if(modelDiv != null)
+    {
+      modelDiv.style.display = 'block';
+    }
+    
+  }
+
   onFileSelected(event: any) 
   {
     if(event.target.files)
@@ -78,6 +87,17 @@ export class ManageRestaurantComponent implements OnInit
   closeModal() 
   {
     const modelDiv = document.getElementById('addDishModal');
+
+    if(modelDiv != null)
+    {
+      modelDiv.style.display = 'none';
+    }
+    
+  }
+
+  closeMenuModal() 
+  {
+    const modelDiv = document.getElementById('manageMenuModal');
 
     if(modelDiv != null)
     {
@@ -191,13 +211,28 @@ export class ManageRestaurantComponent implements OnInit
      this.getAllRestaurants();
   }
 
-  createRestaurant(id:number) 
+  updateRestaurant(restaurantId:number) 
   {
-
+    
   }
-  updateRestaurant(id:number) 
-  {
 
+  deleteDishFromRestaurant(restaurantId:number, dishId:number)
+  {
+    //Sync data with backend
+    this.restaurantService.deleteDish(restaurantId, dishId).subscribe(result =>
+      {
+        this.response = result;
+      },
+      error =>
+      {
+        console.log(error);
+      },
+      () =>
+      {
+        console.log(this.response);
+        location.reload();
+      }
+    )
   }
 
   getAllRestaurants() 
@@ -216,4 +251,41 @@ export class ManageRestaurantComponent implements OnInit
       }
       )
   }
+
+  getAllDishesFromRestaurant()
+  {
+    //Get the selected restaurant
+    const restaurantObject = this.restaurantArray.find(obj => obj.restaurantId === this.selectedRestaurantId);
+    this.mySelectedRestaurant = restaurantObject!;
+  }
+
+  deleteDish(dishId:number)
+  {
+    //Get the selected restaurant
+    const restaurantObject = this.restaurantArray.find(obj => obj.restaurantId === this.selectedRestaurantId);
+    this.mySelectedRestaurant = restaurantObject!;
+
+
+    //Next, find the element in the dishes array then remove the selected dish
+    let count = 0;
+
+    for(var dish of this.mySelectedRestaurant.dishes )
+    {
+      if(dish.dishId === dishId)
+      {
+        //Now that we know where in the array the element is that needs to be deleted, we can easily splice it.
+        // this.mySelectedRestaurant.dishes.splice(count, 1);
+
+        //Unfortunately sending over the object isn't working so I have to send over the restaurant id and the dish id
+        //Finally sync the data with the back end.
+        this.deleteDishFromRestaurant(this.mySelectedRestaurant.restaurantId, count);
+
+        break;
+      }
+
+      count ++;
+    }
+  }
+
+
 }

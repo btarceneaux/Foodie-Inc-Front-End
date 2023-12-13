@@ -4,7 +4,7 @@ export class Restaurant
 {
     restaurantId:number = 0;
     restaurantName:string;
-    dishArray:Dish[] = [];
+    dishes:Dish[] = [];
 
     constructor(restaurantName:string)
     {
@@ -18,6 +18,6 @@ export class Restaurant
 
     setDishes(dishArray:Dish[])
     {
-        this.dishArray = dishArray;
+        this.dishes = dishArray;
     }
 }
