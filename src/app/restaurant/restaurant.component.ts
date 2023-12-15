@@ -41,11 +41,11 @@ export class RestaurantComponent implements OnInit
   {
     let restaurantName = this.restaurantFormGroup.get('restaurantName')?.value!;
 
-    let restaurant = new Restaurant(restaurantName);
+    // let restaurant = new Restaurant(restaurantName);
 
     if(restaurantName.length > 0)
     {
-      this.restaurantService.createRestaurant(restaurant).subscribe(result=>
+      this.restaurantService.createRestaurant(restaurantName).subscribe(result=>
         {
           this.response = result;
         },

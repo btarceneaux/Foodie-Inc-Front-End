@@ -21,6 +21,7 @@ export class ManageRestaurantComponent implements OnInit
   myDish:Dish = new Dish('', '', 0, '');
   fileHandle:any;
   mySelectedRestaurant:Restaurant = new Restaurant("");
+  
 
 
   constructor(private restaurantService: RestaurantService, private router:Router, private sanitizer: DomSanitizer)
@@ -44,9 +45,19 @@ export class ManageRestaurantComponent implements OnInit
     }
   )
 
-  openModal() 
+  updateDishFormGroup = new FormGroup
+  (
+    {
+      dishId: new FormControl(''),
+      dishName: new FormControl(''),
+      dishCategory: new FormControl(''),
+      cost: new FormControl('')
+    }
+  )
+
+  openModal(modalName:string) 
   {
-    const modelDiv = document.getElementById('addDishModal');
+    const modelDiv = document.getElementById(modalName);
 
     if(modelDiv != null)
     {
@@ -55,13 +66,13 @@ export class ManageRestaurantComponent implements OnInit
     
   }
 
-  openMenuModal() 
+  closeModal(modalName:string) 
   {
-    const modelDiv = document.getElementById('manageMenuModal');
+    const modelDiv = document.getElementById(modalName);
 
     if(modelDiv != null)
     {
-      modelDiv.style.display = 'block';
+      modelDiv.style.display = 'none';
     }
     
   }
@@ -81,28 +92,6 @@ export class ManageRestaurantComponent implements OnInit
       this.fileHandle = fileHandle;
     }
     
-    
-  }
-
-  closeModal() 
-  {
-    const modelDiv = document.getElementById('addDishModal');
-
-    if(modelDiv != null)
-    {
-      modelDiv.style.display = 'none';
-    }
-    
-  }
-
-  closeMenuModal() 
-  {
-    const modelDiv = document.getElementById('manageMenuModal');
-
-    if(modelDiv != null)
-    {
-      modelDiv.style.display = 'none';
-    }
     
   }
 
@@ -166,13 +155,14 @@ export class ManageRestaurantComponent implements OnInit
       },
       ()=>
       {
-        console.log("Incoming response status");
         console.log(this.response.status);
         if(this.response.status === 200)
         {
             // this.successEnabled = true;
             console.log("Everything worked");
             this.dishFormGroup.reset();
+            this.fileHandle = null;
+            location.reload();
         }
         else
         {
@@ -287,5 +277,54 @@ export class ManageRestaurantComponent implements OnInit
     }
   }
 
+  updateDish()
+  {
+    let dishId = this.updateDishFormGroup.get('dishId')?.value!;
+    let dishName = this.updateDishFormGroup.get('dishName')?.value!;
+    let dishCategory = this.updateDishFormGroup.get('dishCategory')?.value!;
+    let cost = this.updateDishFormGroup.get('cost')?.value!;
+
+    this.myDish.dishId = Number(dishId);
+    this.myDish.dishName = dishName;
+    this.myDish.dishCategory = dishCategory;
+    this.myDish.cost = Number(cost);
+
+    this.restaurantService.updateDish(this.selectedRestaurantId, this.myDish).subscribe(result =>
+      {
+        let response = result;
+      },
+      error =>
+      {
+        console.log(error);
+      },
+      () =>
+      {
+        console.log(this.response);
+        location.reload();
+      }
+      )
+  }
+
+  populateDish(dishId:number)
+  {
+    //Get the selected restaurant
+    const restaurantObject = this.restaurantArray.find(obj => obj.restaurantId === this.selectedRestaurantId);
+    this.mySelectedRestaurant = restaurantObject!;
+
+
+    //Next, find the element in the dishes array then remove the selected dish
+    let count = 0;
+
+    for(var dish of this.mySelectedRestaurant.dishes )
+    {
+      if(dish.dishId === dishId)
+      {
+        this.myDish = dish;
+        break;
+      }
+
+      count ++;
+    }
+  }
 
 }

@@ -15,10 +15,10 @@ export class RestaurantService
 
   baseurl = "http://localhost:9000/api/restaurant-service";
 
-  createRestaurant(myRestaurant:Restaurant) 
+  createRestaurant(restaurantName:string) 
   {
     let api = this.baseurl + "/restaurant";
-    return this.http.post<Response>(api, myRestaurant, {responseType:'json'});    
+    return this.http.post<Response>(api, restaurantName, {responseType:'json'});    
   }
 
   getAllRestaurants():Observable<Restaurant[]> 
@@ -54,6 +54,13 @@ export class RestaurantService
     let api = this.baseurl + "/restaurant/addDish";
     
     return this.http.post<Response>(api, dishFormData, {responseType:'json'});    
+  }
+
+  updateDish(restaurantId:number, dish:Dish)
+  {
+    let api = this.baseurl + "/restaurant/updateDish/" + restaurantId;
+
+    return this.http.put<Response>(api, dish, {responseType:'json'});
   }
 
 }
