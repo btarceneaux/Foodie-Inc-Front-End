@@ -21,6 +21,13 @@ export class RestaurantService
     return this.http.post<Response>(api, restaurantName, {responseType:'json'});    
   }
 
+  updateRestaurant(restaurantId:number, restaurantName:string) 
+  {
+    let api = this.baseurl + "/restaurant/updateRestaurant/" + restaurantId;
+    return this.http.put<Response>(api, restaurantName, {responseType:'json'});    
+  }
+
+
   getAllRestaurants():Observable<Restaurant[]> 
   {
     let api = this.baseurl + "/restaurant";

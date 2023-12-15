@@ -21,6 +21,7 @@ export class ManageRestaurantComponent implements OnInit
   myDish:Dish = new Dish('', '', 0, '');
   fileHandle:any;
   mySelectedRestaurant:Restaurant = new Restaurant("");
+  restaurantName:String = "";
   
 
 
@@ -29,6 +30,15 @@ export class ManageRestaurantComponent implements OnInit
 
   }
   
+  setRestaurantDetails(restaurantId:number, restaurantName:string)
+  {
+    this.mySelectedRestaurant.setRestaurantId(restaurantId);
+    this.mySelectedRestaurant.restaurantName = restaurantName;
+
+    console.log("My restaurant is : ");
+    console.log(this.mySelectedRestaurant);
+  }
+
   setRestaurantId(restaurantId:number) 
   {
     this.selectedRestaurantId = restaurantId;
@@ -44,6 +54,15 @@ export class ManageRestaurantComponent implements OnInit
       cost: new FormControl('')
     }
   )
+
+  updateRestaurantFormGroup = new FormGroup
+  (
+    {
+      restaurantId: new FormControl(''),
+      restaurantName: new FormControl('')
+    }
+  )
+
 
   updateDishFormGroup = new FormGroup
   (
@@ -175,7 +194,7 @@ export class ManageRestaurantComponent implements OnInit
       )
   }
     
-  DeleteRestaurant(restaurantId:number) 
+  deleteRestaurant(restaurantId:number) 
   {
     if(restaurantId != null)
     {
@@ -201,9 +220,26 @@ export class ManageRestaurantComponent implements OnInit
      this.getAllRestaurants();
   }
 
-  updateRestaurant(restaurantId:number) 
+  updateRestaurant() 
   {
-    
+    let restuarantId = this.updateRestaurantFormGroup.get('restaurantId')?.value!;
+    let restaurantName = this.updateRestaurantFormGroup.get('restaurantName')?.value!;
+
+    //Sync data with backend
+    this.restaurantService.updateRestaurant(Number(restuarantId), restaurantName).subscribe(result=>
+      {
+        this.response = result;
+      },
+      error =>
+      {
+        console.log(error);
+      },
+      () =>
+      {
+        console.log(this.response);
+        location.reload();
+      }
+    )
   }
 
   deleteDishFromRestaurant(restaurantId:number, dishId:number)
