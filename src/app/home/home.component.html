@@ -1,1 +1,51 @@
 <app-header></app-header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 class="text-secondary">Select Restaurant To View The Menu</h2>
+    <br>
+    <div class="container-fluid col-sm-4" > 
+        <form [formGroup]="restaurantFormGroup" (ngSubmit)="selectRestaurant()">
+            <select class="form-select selectpicker" id="restaurantCategory"  formControlName="restaurantId">
+                <option class="sm-4" value="None Selected" >None Selected</option>
+                <option class="sm-4" *ngFor="let restaurant of restaurantArray" [value]="restaurant.restaurantId">{{restaurant.restaurantName}}</option>
+            </select>
+            <br>
+            <div class="text-center">
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="text-center text-secondary" *ngIf="selectedRestaurantId != 0 && orderTotal != 0">
+        Order Total : ${{orderTotal}} &nbsp; &nbsp; <button class="btn btn-secondary" (click)="checkOut()">Check Out</button>
+    </div>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4" *ngFor="let dish of mySelectedRestaurant.dishes">
+                <div class="card mb-4" style="width: 18rem;">
+                    <img src="{{dish.imageURL}}" class="card-img-top" alt="..." width="150px" height="150px">
+                    <div class="card-body">
+                        <form [formGroup]="itemFormGroup" (ngSubmit)="selectItemFromRestaurant(dish)">
+                            <h5 class="card-title">{{dish.dishName}}</h5>
+                        <p class="card-text">
+                            Quantity : <input type="number" class="w-25" value=0 min=0  formControlName="quantity"> 
+                            <br>
+                            Cost : ${{dish.cost}}</p>
+                        <div class="text-center">
+                            <button class="btn btn-secondary">Add To Cart</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -15,6 +15,7 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ManageRestaurantComponent } from './manage-restaurant/manage-restaurant.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ManageRestaurantComponent } from './manage-restaurant/manage-restaurant
     RestaurantComponent,
     ManageUsersComponent,
     UpdateUserComponent,
-    ManageRestaurantComponent
+    ManageRestaurantComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

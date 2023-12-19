@@ -8,6 +8,7 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ManageRestaurantComponent } from './manage-restaurant/manage-restaurant.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = 
 [
@@ -18,7 +19,8 @@ const routes: Routes =
   {path:"addRestaurant", component:RestaurantComponent},
   {path:"manageRestaurants",component:ManageRestaurantComponent},
   {path:"manageUsers", component:ManageUsersComponent},
-  {path:"updateUserDetails", component:UpdateUserComponent}
+  {path:"updateUserDetails", component:UpdateUserComponent},
+  {path:"checkout", component:CheckoutComponent}
 ];
 
 @NgModule({
