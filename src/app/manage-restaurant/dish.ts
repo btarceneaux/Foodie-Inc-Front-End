@@ -2,7 +2,7 @@ import { FileHandle } from "./file-handle";
 
 export class Dish
 {
-    dishId:number = 0;
+    dishId:number | null = null;
     dishName:string;
     dishCategory:string;
     cost:number;

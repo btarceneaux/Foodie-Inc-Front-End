@@ -24,11 +24,11 @@
                     <td>{{restaurant.restaurantName}}</td>
                     <td>
                       <!-- (coptionck)="[openModal(), setRestaurantId(restaurant.restaurantId)] -->
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addDishModal" (click)="setRestaurantId(restaurant.restaurantId)" (coptionck)="openModal('addDishModal')">Add Dish</button> &nbsp; 
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#manageMenuModal" (click)="setRestaurantId(restaurant.restaurantId); getAllDishesFromRestaurant()" (coptionck)="openModal('manageMenuModal')">Manage Menu</button> &nbsp; 
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addDishModal" (click)="setRestaurantId(restaurant.restaurantId)" (coptionck)="openModal('addDishModal')">Add Dish</button> &nbsp;
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#manageMenuModal" (click)="setRestaurantId(restaurant.restaurantId); getAllDishesFromRestaurant()" (coptionck)="openModal('manageMenuModal')">Manage Menu</button> &nbsp;
                     </td>
                     <td>
-                        <button class="btn btn-secondary" (coptionck)="deleteRestaurant(restaurant.restaurantId)">Delete</button> &nbsp; 
+                        <button class="btn btn-secondary" (coptionck)="deleteRestaurant(restaurant.restaurantId)">Delete</button> &nbsp;
                         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateRestaurantModal" (click)="setRestaurantDetails(restaurant.restaurantId, restaurant.restaurantName)" (coptionck)="openModal('updateRestaurantModal')">Update </button> &nbsp;
                     </td>
                 </tr>
@@ -55,15 +55,15 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tr *ngFor="let dish of mySelectedRestaurant.dishes">
-              <td scope="col">{{dish.dishId}}</td>
-              <td scope="col">{{dish.dishName}}</td>
-              <td scope="col">{{dish.dishCategory}}</td>
-              <td scope="col">${{dish.cost}}</td>
-              <td scope="col"><img src={{dish.imageURL}} width="75px" height="75px"></td>
+            <tr *ngFor="let dishItem of mySelectedRestaurant.dishes">
+              <td scope="col">{{dishItem.dishId}}</td>
+              <td scope="col">{{dishItem.dishName}}</td>
+              <td scope="col">{{dishItem.dishCategory}}</td>
+              <td scope="col">${{dishItem.cost}}</td>
+              <td scope="col"><img src={{dishItem.imageURL}} width="75px" height="75px"></td>
               <td scope="col">
-                <button class="btn btn-secondary" (click)="deleteDish(dish.dishId)">Delete</button> &nbsp; 
-                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateDishModal" (click)="populateDish(dish.dishId)" (coptionck)="openModal('updateDishModal')">Update</button> &nbsp;
+                <button class="btn btn-secondary" (click)="deleteDish(dishItem.dishId!)">Delete</button> &nbsp;
+                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateDishModal" (click)="populateDish(dishItem.dishId!)" (coptionck)="openModal('updateDishModal')">Update</button> &nbsp;
               </td>
             </tr>
           </table>

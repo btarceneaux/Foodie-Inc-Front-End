@@ -24,4 +24,10 @@ export class OrderService
     return this.order;
   }
 
+  placeOrder(myOrder:Order)
+  {
+    let api = this.baseurl + "/order";
+    return this.http.post<Response>(api, myOrder, {responseType:'json'});
+  }
+
 }

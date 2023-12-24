@@ -117,6 +117,8 @@ export class HomeComponent implements OnInit
 
   checkOut()
   {
+    //We need to remove the order ID because it interferes with hibernate.
+    this.myOrder.orderId = null;
     this.orderService.setOrder(this.myOrder);
 
     this.router.navigate(['checkout']);
