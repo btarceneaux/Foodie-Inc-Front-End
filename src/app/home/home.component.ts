@@ -4,8 +4,8 @@ import { RestaurantService } from '../services/restaurant.service';
 import { Restaurant } from '../manage-restaurant/restaurant';
 import { Dish } from '../manage-restaurant/dish';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LineItem } from './lineItem';
-import { Order } from './order';
+import { DetailedLineItem } from './detailedLineItem';
+import { DetailedOrder } from './detailedOrder';
 import { OrderService } from '../services/order.service';
 
 @Component({
@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit
   selectedDishQuantity:number = 0;
   selectedRestaurantId:number = 0;
   mySelectedRestaurant:Restaurant = new Restaurant("");
-  myOrder:Order = new Order();
-  lineItemArray:LineItem[] = [];
+  myOrder:DetailedOrder = new DetailedOrder();
+  lineItemArray:DetailedLineItem[] = [];
   
   restaurantFormGroup = new FormGroup
   (
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit
     
     if(this.selectedDishQuantity > 0)
     {
-      let myLineItem = new LineItem(this.selectedRestaurantId, this.selectedDishQuantity);
+      let myLineItem = new DetailedLineItem(this.selectedRestaurantId, this.selectedDishQuantity);
       myLineItem.dish = dish;
       this.lineItemArray.push(myLineItem);
 

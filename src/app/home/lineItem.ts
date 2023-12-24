@@ -1,15 +1,14 @@
-import { Dish } from "../manage-restaurant/dish";
-
 export class LineItem
 {
-    lineItemId:number = 0;
-    restaurantId:number = 0;
-    quantity:number = 0;
-    dish:Dish | undefined;
+    restaurantId:number;
+    quantity:number;
+    dishNumber:number;
+    lineItemId:number | null = null;
 
-    constructor(restaurantId:number, quantity:number)
+    constructor(restaurantId:number, dishId:number, quantity:number)
     {
         this.restaurantId = restaurantId;
+        this.dishNumber = dishId;
         this.quantity = quantity;
     }
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { Router } from '@angular/router';
-import { Order } from '../home/order';
+import { DetailedOrder } from '../home/detailedOrder';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Orders } from '../home/Orders';
+import { LineItem } from '../home/LineItem';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CheckoutComponent implements OnInit
 {
-  myOrder:Order | undefined;
+  myOrder:DetailedOrder | undefined;
   total:number = 0;
   error:boolean = false;
   response:Response = new Response();
@@ -103,8 +105,24 @@ export class CheckoutComponent implements OnInit
     let creditCardNumber = this.orderFormGroup.get('creditCardNumber')?.value!;
     let expiration = this.orderFormGroup.get('expiration')?.value!;
     let cvv = this.orderFormGroup.get('cvv')?.value!;
+
+    let tempOrder = new Orders();
+
+    tempOrder.orderTotal = this.myOrder?.orderTotal!;
+
+    for(var item of this.myOrder?.orderItems!)
+    {
+      let restaurantId = item.restaurantId;
+      let quantity = item.quantity;
+      let myDishId = item.dish?.dishId!;
+
+      //Construct an item
+      let myItem = new LineItem(restaurantId, myDishId, quantity);
+
+      tempOrder.orderItems.push(myItem);
+    }
     
-    this.orderService.placeOrder(this.myOrder!).subscribe(result =>
+    this.orderService.placeOrder(tempOrder!).subscribe(result =>
       {
         this.response = result;
       },
@@ -114,7 +132,7 @@ export class CheckoutComponent implements OnInit
       },
       ()=>
       {
-        console.log(this.response);
+        this.router.navigate(['orderPlaced']);
       }
       )
     

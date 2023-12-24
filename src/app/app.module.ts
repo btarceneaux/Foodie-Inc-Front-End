@@ -16,6 +16,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ManageRestaurantComponent } from './manage-restaurant/manage-restaurant.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderPlacedComponent } from './order-placed/order-placed.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ManageUsersComponent,
     UpdateUserComponent,
     ManageRestaurantComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrderPlacedComponent
   ],
   imports: [
     BrowserModule,

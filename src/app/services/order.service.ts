@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Order } from '../home/order';
 import { HttpClient } from '@angular/common/http';
+import { DetailedOrder } from '../home/detailedOrder';
+import { Orders } from '../home/Orders';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService 
 {
-  order:Order | undefined;
+  order:DetailedOrder | undefined;
 
   constructor(public http:HttpClient) { }
 
   baseurl = "http://localhost:9000/api/order-service";
 
   //We need to pull the order up on the confirmation page.
-  setOrder(myOrder:Order)
+  setOrder(myOrder:DetailedOrder)
   {
     this.order = myOrder;
   }
@@ -24,7 +25,7 @@ export class OrderService
     return this.order;
   }
 
-  placeOrder(myOrder:Order)
+  placeOrder(myOrder:Orders)
   {
     let api = this.baseurl + "/order";
     return this.http.post<Response>(api, myOrder, {responseType:'json'});

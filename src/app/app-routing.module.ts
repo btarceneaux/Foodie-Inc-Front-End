@@ -9,6 +9,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ManageRestaurantComponent } from './manage-restaurant/manage-restaurant.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderPlacedComponent } from './order-placed/order-placed.component';
 
 const routes: Routes = 
 [
@@ -20,7 +21,8 @@ const routes: Routes =
   {path:"manageRestaurants",component:ManageRestaurantComponent},
   {path:"manageUsers", component:ManageUsersComponent},
   {path:"updateUserDetails", component:UpdateUserComponent},
-  {path:"checkout", component:CheckoutComponent}
+  {path:"checkout", component:CheckoutComponent},
+  {path:"orderPlaced", component:OrderPlacedComponent}
 ];
 
 @NgModule({

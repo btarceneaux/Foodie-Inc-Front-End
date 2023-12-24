@@ -1,6 +1,6 @@
-import { LineItem } from "./lineItem";
+import { LineItem } from "./LineItem";
 
-export class Order 
+export class Orders
 {
     orderId:number | null = null;
     orderDateAndTime:Date | undefined;
