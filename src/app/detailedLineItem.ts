@@ -1,4 +1,4 @@
-import { Dish } from "../manage-restaurant/dish";
+import { Dish } from "./manage-restaurant/dish";
 
 export class DetailedLineItem
 {

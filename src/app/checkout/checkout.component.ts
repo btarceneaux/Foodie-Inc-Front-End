@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { Router } from '@angular/router';
-import { DetailedOrder } from '../home/detailedOrder';
+import { DetailedOrder } from '../detailedOrder';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Orders } from '../home/Orders';
-import { LineItem } from '@app/home/LineItem';
+import { Orders } from '../Orders';
+import { LineItem } from 'app/LineItem';
+
 
 
 @Component({

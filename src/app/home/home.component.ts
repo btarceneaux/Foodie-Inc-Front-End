@@ -4,8 +4,8 @@ import { RestaurantService } from '../services/restaurant.service';
 import { Restaurant } from '../manage-restaurant/restaurant';
 import { Dish } from '../manage-restaurant/dish';
 import { FormControl, FormGroup } from '@angular/forms';
-import { DetailedLineItem } from './detailedLineItem';
-import { DetailedOrder } from './detailedOrder';
+import { DetailedLineItem } from '../detailedLineItem';
+import { DetailedOrder } from '../detailedOrder';
 import { OrderService } from '../services/order.service';
 
 @Component({
