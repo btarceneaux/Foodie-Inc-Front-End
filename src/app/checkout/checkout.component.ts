@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { DetailedOrder } from '../home/detailedOrder';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Orders } from '../home/Orders';
-import { LineItem } from '../home/LineItem';
+import { LineItem } from '@app/home/LineItem';
 
 
 @Component({
