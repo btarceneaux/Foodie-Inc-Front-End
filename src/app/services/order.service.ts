@@ -12,7 +12,7 @@ export class OrderService
 
   constructor(public http:HttpClient) { }
 
-  baseurl = "http://localhost:9000/api/order-service";
+  baseurl = "http://api-gateway-webservice:9000/api/order-service";
 
   //We need to pull the order up on the confirmation page.
   setOrder(myOrder:DetailedOrder)

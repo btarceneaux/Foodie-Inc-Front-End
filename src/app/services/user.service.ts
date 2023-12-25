@@ -13,7 +13,7 @@ export class UserService
   
   constructor(public http:HttpClient) { }
 
-  baseurl = "http://localhost:9000/api/user-service";
+  baseurl = "http://api-gateway-webservice:9000/api/user-service";
 
   loginUser(emailAddress:string, password:string):Observable<Response>
   {

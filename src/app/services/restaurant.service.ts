@@ -13,7 +13,7 @@ export class RestaurantService
 
   constructor(public http:HttpClient) { }
 
-  baseurl = "http://localhost:9000/api/restaurant-service";
+  baseurl = "http://api-gateway-webservice:9000/api/restaurant-service";
 
   createRestaurant(restaurantName:string) 
   {
