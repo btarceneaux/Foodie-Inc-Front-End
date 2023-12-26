@@ -12,7 +12,7 @@ export class OrderService
 
   constructor(public http:HttpClient) { }
 
-  baseurl = "http://ec2-35-87-48-128.us-west-2.compute.amazonaws.com:8083/api/order-service";
+  baseurl = "http://ec2-35-89-74-130.us-west-2.compute.amazonaws.com:8083/api/order-service";
 
   //We need to pull the order up on the confirmation page.
   setOrder(myOrder:DetailedOrder)
