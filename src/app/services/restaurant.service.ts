@@ -13,7 +13,7 @@ export class RestaurantService
 
   constructor(public http:HttpClient) { }
 
-  baseurl = "http://api-gateway-webservice:9000/api/restaurant-service";
+  baseurl = "http://ec2-35-87-48-128.us-west-2.compute.amazonaws.com:8082/api/restaurant-service";
 
   createRestaurant(restaurantName:string) 
   {
