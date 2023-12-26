@@ -83,7 +83,14 @@ export class UserComponent implements OnInit
           }
   
           this.userFormGroup.reset();
-          this.router.navigate(["/home"]);
+          if(user.emailAddress = "admin@foodie.inc")
+          {
+            this.router.navigate(["/"]);
+          }
+          else
+          {
+            this.router.navigate(["/home"]);
+          }
         } 
         )
     }

@@ -186,6 +186,7 @@ export class ManageRestaurantComponent implements OnInit
         else
         {
             // this.errorEnabled = true;
+            console.log(this.response);
             console.log("Uh oh! Something happened!");
         }
   
